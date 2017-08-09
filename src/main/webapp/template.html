@@ -1,0 +1,51 @@
+<!--<textarea style="display: none">-->
+<!--设置样式为不展示，浏览器解析时不保留空间单读入数据-->
+<!--<textarea style="visibility: hidden">-->
+<!--设置样式为不可见，浏览器解析时保留空间读入数据-->
+<!--<textarea hidden="hidden">-->
+<!--设置属性为隐藏，浏览器解析时不读入数据-->
+
+<textarea id="contentStructure" hidden="hidden">
+                <label>快来看看圈子的动态</label>
+                <%--列表根节点--%>
+                <ul>
+
+                </ul>
+
+</textarea>
+<textarea id="contentItem" hidden="hidden">
+    <li class="content" id="videoItem" >
+                        <div class="col-md-3 content-1-div-1">
+                            <img data-src="holder.js/100%x120">
+                        </div>
+                        <div class="col-md-9 content-1-div-2">
+                            <ul>
+                                <li >
+                                    <h6>
+                                        $title$
+                                    </h6>
+                                    <p class="p1">
+                                        $detail$
+                                    </p>
+                                    <p class="p2">
+                                        上传时间：$createTime$ &nbsp;|&nbsp;&nbsp;&nbsp;难度：初级
+                                    </p>
+                                    <p class="p3">
+                                        <span>
+                                        $remark$
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+</textarea>
+<script type="text/javascript">
+    String.prototype.fillData = function (obj) {
+        return this.replace(/\$\w+\$/gi, function (matchs) {
+            var returns = obj[matchs.replace(/\$/g, "")];
+            return (returns + "") == "undefined" ? "" : returns;
+        });
+    };
+</script>

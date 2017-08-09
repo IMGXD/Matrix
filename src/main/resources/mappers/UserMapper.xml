@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.matrix.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.matrix.pojo.User">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="nickname" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="tel" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="sex" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="birthday" jdbcType="DATE" javaType="java.util.Date"/>
+            <arg column="valid" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="authority" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="last_login" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="current_login" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="last_ip" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="current_ip" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, username, nickname, password, tel, email, sex, birthday, valid, create_time, 
+    update_time, authority, last_login, current_login, last_ip, current_ip
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from matrix_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from matrix_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.matrix.pojo.User">
+    insert into matrix_user (id, username, nickname, 
+      password, tel, email, 
+      sex, birthday, valid, 
+      create_time, update_time, authority, 
+      last_login, current_login, last_ip, 
+      current_ip)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{valid,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{authority,jdbcType=INTEGER}, 
+      #{lastLogin,jdbcType=TIMESTAMP}, #{currentLogin,jdbcType=TIMESTAMP}, #{lastIp,jdbcType=VARCHAR}, 
+      #{currentIp,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.matrix.pojo.User">
+        insert into matrix_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="tel != null">
+                tel,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="valid != null">
+                valid,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="authority != null">
+                authority,
+            </if>
+            <if test="lastLogin != null">
+                last_login,
+            </if>
+            <if test="currentLogin != null">
+                current_login,
+            </if>
+            <if test="lastIp != null">
+                last_ip,
+            </if>
+            <if test="currentIp != null">
+                current_ip,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=DATE},
+            </if>
+            <if test="valid != null">
+                #{valid,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="authority != null">
+                #{authority,jdbcType=INTEGER},
+            </if>
+            <if test="lastLogin != null">
+                #{lastLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="currentLogin != null">
+                #{currentLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastIp != null">
+                #{lastIp,jdbcType=VARCHAR},
+            </if>
+            <if test="currentIp != null">
+                #{currentIp,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.matrix.pojo.User">
+        update matrix_user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null">
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="valid != null">
+                valid = #{valid,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="authority != null">
+                authority = #{authority,jdbcType=INTEGER},
+            </if>
+            <if test="lastLogin != null">
+                last_login = #{lastLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="currentLogin != null">
+                current_login = #{currentLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastIp != null">
+                last_ip = #{lastIp,jdbcType=VARCHAR},
+            </if>
+            <if test="currentIp != null">
+                current_ip = #{currentIp,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.matrix.pojo.User">
+    update matrix_user
+    set username = #{username,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=DATE},
+      valid = #{valid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      authority = #{authority,jdbcType=INTEGER},
+      last_login = #{lastLogin,jdbcType=TIMESTAMP},
+      current_login = #{currentLogin,jdbcType=TIMESTAMP},
+      last_ip = #{lastIp,jdbcType=VARCHAR},
+      current_ip = #{currentIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="checkUsername" resultType="java.lang.Integer" parameterType="string">
+    SELECT COUNT(1) FROM matrix_user
+    where username = #{username}
+  </select>
+
+    <select id="checkEmail" resultType="int" parameterType="string">
+    SELECT COUNT(1) FROM matrix_user
+    where email = #{email}
+  </select>
+    <select id="checkNickname" resultType="java.lang.Integer" parameterType="string">
+    SELECT COUNT(1) FROM matrix_user
+        where nickname = #{nickname}
+  </select>
+    <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM matrix_user
+        WHERE username = #{username}
+        AND password = #{password}
+    </select>
+    <select id="checkEmailByUserId" resultType="int" parameterType="map">
+        SELECT COUNT(1) FROM matrix_user
+        where email = #{email}
+        and id != #{userId}
+    </select>
+    <select id="queryAll" parameterType="userQuery" resultType="com.matrix.pojo.User">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        matrix_user
+        <where>
+            <if test="username != null">
+                and username like concat('%',#{username},'%')
+            </if>
+        </where>
+    </select>
+    <select id="checkUserId" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM matrix_user
+        WHERE id = #{userId}
+    </select>
+
+</mapper>
